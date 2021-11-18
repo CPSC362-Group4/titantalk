@@ -41,7 +41,7 @@ const HomeScreen = ({ navigation }) => {
         />
         <Mybutton
           title="Forgot Account Info"
-          customClick={() => navigation.navigate('ForgotScreen')}
+          customClick={() => navigation.navigate('ForgotPassword')}
         />
       </View>
     </View>
