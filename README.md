@@ -102,25 +102,52 @@ List of network requests by screen
 	- [ ] Create login page design
 	- [ ] Implement finalized UI for login page
 	- [ ] Fetch existing user data from DB
-
-- U13
+- U13:
 	- [X] Create the timeline view on the homepage
 
-
 ### Issues
-- WIP
+- Trouble with fully implementing the SQLite DB
+- Trouble with consistency across code
+- Everyone was adapting to new technology they weren't used to
 
 ## SPRINT 2
-- WIP
+- [X] Debug and standardize code for consistency
+- U03:
+	- [ ] Fetch gallery data for photos
+- U04:
+	- [ ] Create button to go to user profile
+- U05:
+	- [ ] Create logout button/log current user out of session
+- U08:
+	- [ ] Fetch gallery data for videos
+	- [ ] Create bottom sheet to upload videos
+	- [ ] Create bottom sheet to upload photos 	 
 
 ### Issues
-- WIP
+- Still having trouble with DB
+- Needed to standardize code for everyone, as everybody had different platforms/versions
 
 ## SPRINT 3
-- WIP
+- [ ] Input data into database
+- U03:
+	- [ ] Fetch gallery data for photos 
+- U04:
+	-  [X] Create empty profile page
+	-  [X] Create button to go to logged-in user profile
+	-  [ ] Display logged-in user profile picture on profile page
+	-  [ ] Display logged-in user's location info on profile page
+	-  [ ] Display the username of logged-in user on profile page
+	-  [ ] Display logged-in user posts on profile page
+	-  [ ] Display logged-in user phone number on profile page
+	-  [ ] Display logged-in user email address on profile page
+- U05:
+	- [ ] Create logout button/log current user out of session
+- U07:
+	- [ ] Create placeholder for forgot my password 
 
 ### Issues
-- WIP
+- Still having issues with DB
+- Teamquake
 
 ## SPRINT 4
 - WIP
