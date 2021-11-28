@@ -95,13 +95,16 @@ List of network requests by screen
 - [X] Hello World Code
 - U01: 
 	- [X] Create a database to store information
-- [ ] Create the timeline view on the homepage
-- [ ] Create a basic sign up form
-- [ ] Create an option to sign up on the login page
-- [ ] Insert the new account data into the DB
-- [ ] Create the design for the login page
-- [ ] Implements the finalized UI for the login page
-- [ ] Fetch existing user data
+	- [X] Create a basic sign up form
+	- [ ] Create an option to sign up on the login page
+	- [ ] Insert the new account data into the DB
+- U02:
+	- [ ] Create login page design
+	- [ ] Implement finalized UI for login page
+	- [ ] Fetch existing user data from DB
+
+- U13
+	- [X] Create the timeline view on the homepage
 
 
 ### Issues
