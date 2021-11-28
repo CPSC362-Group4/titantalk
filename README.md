@@ -77,7 +77,7 @@ This application allows for CSUF students to connect in a new way. Users can sha
 
 ### Models
 
-<img src="models.jpg" width=600>
+<img src="models.JPG" width=600>
 
 ### Networking
 List of network requests by screen
