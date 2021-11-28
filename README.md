@@ -18,7 +18,7 @@ This application allows for CSUF students to connect in a new way. Users can sha
              desired party.
 - **Market:** Cal State Fullerton students.
 - **Habit:** Students can upload photos, videos, or host live talks whenever they want.
-- **Scope:** WIP
+- **Scope:** Version 1 will allow users to load a hard-coded feed of images. Version 2 will allow users to navigate between different pages. Version 3 will allow users to log in and their information is stored to the database. Version 4 will allow users to post images, view an image feed, and logout.
 
 ## Product Spec
 
@@ -54,7 +54,9 @@ This application allows for CSUF students to connect in a new way. Users can sha
 
 **Tab Navigation** (Tab to Screen)
 
-* WIP
+* Home
+* Profile
+* Logout
 
 **Flow Navigation** (Screen to Screen)
 
@@ -73,16 +75,34 @@ This application allows for CSUF students to connect in a new way. Users can sha
 
 ## Schema 
 
+### Models
+
+<img src="models.jpg" width=600>
+
 ### Networking
 List of network requests by screen
 - Timeline Feed Screen
   - (Read/GET) Query all posts where event is author
 - Creation Screen
   - (Create/POST) Create a new post object
-- WIP
 
 ## SPRINT 1
-- WIP
+- Architectural Spike
+	- [X] Learn SQLite (basics)
+	- [X] Learn Node.js/Feather.js
+	- [X] Learn HTML
+	- [X] Learn JavaScript
+- [X] Hello World Code
+- U01: 
+	- [X] Create a database to store information
+- [ ] Create the timeline view on the homepage
+- [ ] Create a basic sign up form
+- [ ] Create an option to sign up on the login page
+- [ ] Insert the new account data into the DB
+- [ ] Create the design for the login page
+- [ ] Implements the finalized UI for the login page
+- [ ] Fetch existing user data
+
 
 ### Issues
 - WIP
@@ -98,6 +118,7 @@ List of network requests by screen
 
 ### Issues
 - WIP
+
 ## SPRINT 4
 - WIP
 
