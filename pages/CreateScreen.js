@@ -2,7 +2,7 @@
 // https://aboutreact.com/example-of-sqlite-database-in-react-native
 
 import React, { useEffect } from 'react';
-import { View, TextInput, Text, SafeAreaView, Image, StyleSheet, Button } from 'react-native';
+import { View, TextInput, Text, SafeAreaView, Image, StyleSheet, Button, ScrollView } from 'react-native';
 import Mybutton from './components/Mybutton';
 import Mytext from './components/Mytext';
 import { openDatabase } from 'react-native-sqlite-storage';
@@ -54,59 +54,60 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <View style={{ flex: 1,backgroundColor: '#055C9D' }}>
-      <Image
+      <ScrollView style={styles.scrollview}>
+        <Image
           style={styles.logo}
           source={require('./images/Tuffy.png')}
-      />
-      <Text 
-        style={styles.text}>Enter Name:
-      </Text>          
-      <TextInput 
-        style={styles.textInput}
-        placeholder="Name">
-      </TextInput>
+        />
+        <Text 
+          style={styles.text}>Enter Name:
+        </Text>          
+        <TextInput 
+          style={styles.textInput}
+          placeholder="Name">
+        </TextInput>
 
-       <Text style={styles.text}>Enter Last Name:</Text>
-       <TextInput 
-        style={styles.textInput}
-        placeholder="Last name">
-      </TextInput>
+        <Text style={styles.text}>Enter Last Name:</Text>
+         <TextInput 
+          style={styles.textInput}
+          placeholder="Last name">
+        </TextInput>
 
-      <Text 
-        style={styles.text}>Enter CWID:
-      </Text>
-      <TextInput 
-        style={styles.textInput}
-        placeholder="CWID">
-      </TextInput>
+        <Text 
+          style={styles.text}>Enter CWID:
+        </Text>
+        <TextInput 
+          style={styles.textInput}
+          placeholder="CWID">
+        </TextInput>
 
-      <Text 
-        style={styles.text}>Confirm CWID:
-      </Text>
-      <TextInput 
-        style={styles.textInput}
-        placeholder="Confirm CWID">
-      </TextInput>
+        <Text 
+          style={styles.text}>Confirm CWID:
+        </Text>
+        <TextInput 
+          style={styles.textInput}
+          placeholder="Confirm CWID">
+        </TextInput>
 
-      <Text style={styles.text}> Enter Password</Text>
-      <TextInput 
-        style={styles.textInput}
-        placeholder="Enter Password">
-      </TextInput>
+        <Text style={styles.text}> Enter Password</Text>
+        <TextInput 
+          style={styles.textInput}
+          placeholder="Enter Password">
+        </TextInput>
 
-      <Text style={styles.text}> Enter Password</Text>
-      <TextInput 
-        style={styles.textInput}
-        placeholder="Enter Password">
-      </TextInput>
+        <Text style={styles.text}> Enter Password</Text>
+        <TextInput 
+          style={styles.textInput}
+          placeholder="Enter Password">
+        </TextInput>
 
-      <Mybutton
-        title="Create Account"
-        customClick={() => navigation.navigate('')}
-      />
+        <Mybutton
+          title="Create Account"
+          customClick={() => navigation.navigate('')}
+        />
+        </ScrollView >
     </View >
   );
 };
 
 export default HomeScreen;
-
