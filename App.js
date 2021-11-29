@@ -13,6 +13,7 @@ import HomeScreen from './pages/HomeScreen';
 import CreateScreen from './pages/CreateScreen';
 import LoginScreen from './pages/LoginScreen';
 import ForgotPassword from './pages/ForgotPassword';
+import Profile from './pages/Profile';
 
 const Stack = createStackNavigator();
 
@@ -81,6 +82,20 @@ const App = () => {
           component={ForgotPassword}
           options={{
             title: 'Forgot Password', //Set Header Title
+            headerStyle: {
+              backgroundColor: '#f4511e', //Set Header color
+            },
+            headerTintColor: '#fff', //Set Header text color
+            headerTitleStyle: {
+              fontWeight: 'bold', //Set Header text style
+            },
+          }}
+        />
+        <Stack.Screen
+          name="Profile"
+          component={Profile}
+          options={{
+            title: 'Profile', //Set Header Title
             headerStyle: {
               backgroundColor: '#f4511e', //Set Header color
             },
