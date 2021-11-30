@@ -150,7 +150,21 @@ List of network requests by screen
 - Teamquake
 
 ## SPRINT 4
-- WIP
+- [ ] Input data into database
+- U03:
+	- [ ] Fetch gallery data for photos 
+- U04:
+	-  [ ] Display logged-in user profile picture on profile page
+	-  [ ] Display logged-in user's location info on profile page
+	-  [ ] Display the username of logged-in user on profile page
+	-  [ ] Display logged-in user posts on profile page
+	-  [ ] Display logged-in user phone number on profile page
+	-  [ ] Display logged-in user email address on profile page
+- U05:
+	- [ ] Incorporate database functionality with logout
+- U13:
+	- [ ] Add feed/timeline
+	- [ ] Complete pages navigation
 
 ### Issues
 - WIP
