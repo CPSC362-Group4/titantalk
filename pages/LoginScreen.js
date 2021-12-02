@@ -1,22 +1,14 @@
 // Example: Example of SQLite Database in React Native
 // https://aboutreact.com/example-of-sqlite-database-in-react-native
 
-import React, { useEffect } from "react";
-import {
-  View,
-  TextInput,
-  Text,
-  SafeAreaView,
-  Image,
-  StyleSheet,
-  Button,
-  ScrollView
-} from "react-native";
-import Mybutton from "./components/Mybutton";
-import Mytext from "./components/Mytext";
-import { openDatabase } from "react-native-sqlite-storage";
+import React, { useState, useEffect } from 'react';
+import { View, TextInput, Alert, Text, SafeAreaView, Image, StyleSheet, Button,ScrollView } from 'react-native';
+import Mybutton from './components/Mybutton';
+import Mytext from './components/Mytext';
+import Mytextinput from './components/Mytextinput';
+import { openDatabase } from 'react-native-sqlite-storage';
 
-var db = openDatabase({ name: "UserDatabase.db" });
+var db = openDatabase({ name: "Default" });
 
 const styles = StyleSheet.create({
   logo: {
@@ -51,42 +43,67 @@ const styles = StyleSheet.create({
 });
 
 const HomeScreen = ({ navigation }) => {
-  useEffect(() => {
-    db.transaction(function (txn) {
-      txn.executeSql(
-        "SELECT name FROM sqlite_master WHERE type='table' AND name='table_user'",
-        [],
-        function (tx, res) {
-          console.log("item:", res.rows.length);
-          if (res.rows.length == 0) {
-            txn.executeSql("DROP TABLE IF EXISTS table_user", []);
-            txn.executeSql(
-              "CREATE TABLE IF NOT EXISTS table_user(user_id INTEGER PRIMARY KEY AUTOINCREMENT, user_name VARCHAR(20), user_contact INT(10), user_address VARCHAR(255))",
-              []
-            );
-          }
+  
+  const [cwid, setCWID] = useState('');
+  const [password, setPassword] = useState('');
+  const [tempcwid, setTempCWID] = useState('');
+
+  const getData = () => {
+    setTempCWID({});
+
+    db.transaction((tx)=>{
+      tx.executeSql(
+        'SELECT cwid, password FROM Users WHERE cwid=?', [cwid],
+        (tx, results) =>{
+          setTempCWID(results.rows.item(0));
         }
       );
     });
-  }, []);
+
+    if(tempcwid.cwid == cwid && tempcwid.password == password){
+      global.cwid = cwid
+      navigation.navigate('Timeline');
+    }
+    else{
+      Alert.alert('CWID or Password is incorrect.')
+      return;
+    }
+  }
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#055C9D" }}>
-      <ScrollView styles={styles.scrollview}>
-        <Image style={styles.logo} source={require("./images/Tuffy.png")} />
-        <Text style={styles.header}>Welcome Back!</Text>
-        <Text style={styles.text}>Enter CWID:</Text>
-        <TextInput style={styles.textInput} placeholder="CWID"></TextInput>
+    <View style={{ flex: 1,backgroundColor: '#055C9D' }}>
+      <ScrollView style={styles.scrollview}>
+        <Image
+            style={styles.logo}
+            source={require('./images/Tuffy.png')}
+        />
+        <Text
+          style={styles.header}>Welcome Back!
+        </Text>
+        <Text
+          style={styles.text}>Enter CWID:
+        </Text>
+        <Mytextinput
+          placeholder="CWID"
+          onChangeText={
+            (cwid) => setCWID(cwid)
+          }
+        />
 
         <Text style={styles.text}> Enter Password</Text>
-        <TextInput
-          style={styles.textInput}
-          placeholder="Enter Password"
-        ></TextInput>
+        <Mytextinput
+          placeholder="Password"
+          onChangeText={
+            (password) => setPassword(password)
+          }
+        />
 
-        <Mybutton title="Login" customClick={() => navigation.navigate("")} />
+        <Mybutton
+          title="Login"
+          customClick={getData}
+        />
       </ScrollView>
-    </View>
+    </View >
   );
 };
 
