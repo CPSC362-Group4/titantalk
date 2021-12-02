@@ -5,6 +5,9 @@
 2. [Product Spec](#Product-Spec)
 3. [Wireframes](#Wireframes)
 4. [Schema](#Schema)
+5. [Sprints](#Sprints)
+6. [Project Setup](#Project-Setup)
+7. [Demo](#Demo)
 
 ## Overview
 ### Description
@@ -86,7 +89,9 @@ List of network requests by screen
 - Creation Screen
   - (Create/POST) Create a new post object
 
-## SPRINT 1
+## Sprints
+
+### SPRINT 1
 - Architectural Spike
 	- [X] Learn SQLite (basics)
 	- [X] Learn Node.js/Feather.js
@@ -110,7 +115,7 @@ List of network requests by screen
 - Trouble with consistency across code
 - Everyone was adapting to new technology they weren't used to
 
-## SPRINT 2
+### SPRINT 2
 - [X] Debug and standardize code for consistency
 - U03:
 	- [ ] Fetch gallery data for photos
@@ -127,7 +132,7 @@ List of network requests by screen
 - Still having trouble with DB
 - Needed to standardize code for everyone, as everybody had different platforms/versions
 
-## SPRINT 3
+### SPRINT 3
 - [ ] Input data into database
 - U03:
 	- [ ] Fetch gallery data for photos 
@@ -149,7 +154,7 @@ List of network requests by screen
 - Still having issues with DB
 - Teamquake
 
-## SPRINT 4
+### SPRINT 4
 - [X] Input data into database
 - U03:
 	- [ ] Fetch gallery data for photos 
@@ -169,4 +174,10 @@ List of network requests by screen
 ### Issues
 - Trouble fetching user information when logging in/recovering passwords
 
-https://youtu.be/jt5SHExv57I
+## Project Setup
+
+https://youtu.be/HtdUlQXVBTY
+
+## Demo
+
+### https://youtu.be/jt5SHExv57I
