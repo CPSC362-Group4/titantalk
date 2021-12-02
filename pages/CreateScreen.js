@@ -1,13 +1,14 @@
 // Example: Example of SQLite Database in React Native
 // https://aboutreact.com/example-of-sqlite-database-in-react-native
 
-import React, { useEffect } from 'react';
-import { View, TextInput, Text, SafeAreaView, Image, StyleSheet, Button, ScrollView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, TextInput, Alert, Text, SafeAreaView, Image, StyleSheet, Button, ScrollView } from 'react-native';
 import Mybutton from './components/Mybutton';
 import Mytext from './components/Mytext';
+import Mytextinput from './components/Mytextinput';
 import { openDatabase } from 'react-native-sqlite-storage';
 
-var db = openDatabase({ name: 'UserDatabase.db' });
+var db = openDatabase({ name: 'Default.db' });
 
 const styles = StyleSheet.create({
   logo: {
@@ -33,81 +34,149 @@ const styles = StyleSheet.create({
 });
 
 const HomeScreen = ({ navigation }) => {
-  useEffect(() => {
-    db.transaction(function (txn) {
-      txn.executeSql(
-        "SELECT name FROM sqlite_master WHERE type='table' AND name='table_user'",
-        [],
-        function (tx, res) {
-          console.log('item:', res.rows.length);
-          if (res.rows.length == 0) {
-            txn.executeSql('DROP TABLE IF EXISTS table_user', []);
-            txn.executeSql(
-              'CREATE TABLE IF NOT EXISTS table_user(user_id INTEGER PRIMARY KEY AUTOINCREMENT, user_name VARCHAR(20), user_contact INT(10), user_address VARCHAR(255))',
-              []
+  
+  const [first_name, setFirstName] = useState('');
+  const [last_name, setLastName] = useState('');
+  const [cwid, setCWID] = useState('');
+  const [confirm_cwid, setConfirm_CWID] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirm_password, setConfirmPassword] = useState('');
+  const [tempcwid, setTempCWID] = useState('');
+
+ useEffect(() => {
+
+}, []);
+
+
+let setData =()=> {
+  console.log(first_name,last_name,cwid,password)
+
+
+  if(!first_name || !last_name || !cwid || !password) {
+    alert('Please fill in all requirements')
+    return;
+  }
+  if(confirm_cwid != cwid){
+      Alert.alert('Warning!', 'Confirm CWID does not match.')
+      return;
+  }
+  if(global.cwid == cwid){
+      Alert.alert('Warning!','That CWID exists already.')
+      global.cwid = 0
+      return;
+  }
+  else{
+    db.transaction(function (tx) {
+      tx.executeSql(
+        'INSERT INTO Users (first_name, last_name, cwid, password) VALUES (?,?,?,?)',
+        [first_name,last_name,cwid,password],
+        (tx, results) => {
+          console.log('Results', results.rowsAffected);
+          if (results.rowsAffected > 0) {
+
+            db.transaction(function (tx){
+              tx.executeSql(
+                'SELECT EXISTS (SELECT cwid FROM Users WHERE cwid=?)', [cwid],
+                (tx, results) =>{
+                  setTempCWID(results.rows.item(0));
+                }
+              );
+            });
+
+
+            if(tempcwid.cwid == cwid){
+                Alert.alert('Warning!','That CWID exists already.')
+                global.cwid = 0
+                return;
+            }
+
+            Alert.alert(
+              'Success',
+              'You are Registered Successfully',
+              [
+                {
+                  text: 'Ok',
+                  onPress: () => navigation.navigate('Timeline'),
+                },
+              ],
+              { cancelable: false }
             );
-          }
+          } else alert('Registration Failed');
         }
       );
     });
-  }, []);
+  }
+}
 
-  return (
-    <View style={{ flex: 1,backgroundColor: '#055C9D' }}>
+return (
+  <View style={{ flex: 1,backgroundColor: '#055C9D' }}>
       <ScrollView style={styles.scrollview}>
         <Image
-          style={styles.logo}
-          source={require('./images/Tuffy.png')}
+            style={styles.logo}
+            source={require('./images/Tuffy.png')}
         />
-        <Text 
+        <Text
           style={styles.text}>Enter Name:
-        </Text>          
-        <TextInput 
-          style={styles.textInput}
-          placeholder="Name">
-        </TextInput>
+        </Text>
+        <Mytextinput
+          placeholder="Enter First Name"
+          onChangeText={
+            (first_name) => setFirstName(first_name)
+          }
+        />
 
-        <Text style={styles.text}>Enter Last Name:</Text>
-         <TextInput 
-          style={styles.textInput}
-          placeholder="Last name">
-        </TextInput>
+         <Text style={styles.text}>Enter Last Name:</Text>
+         <Mytextinput
+           placeholder="Enter Last Name"
+           onChangeText={
+             (last_name) => setLastName(last_name)
+           }
+         />
 
-        <Text 
+        <Text
           style={styles.text}>Enter CWID:
         </Text>
-        <TextInput 
-          style={styles.textInput}
-          placeholder="CWID">
-        </TextInput>
+        <Mytextinput
+          placeholder="Enter CWID"
+          onChangeText={
+            (cwid) => setCWID(cwid)
+          }
+        />
 
-        <Text 
+        <Text
           style={styles.text}>Confirm CWID:
         </Text>
-        <TextInput 
-          style={styles.textInput}
-          placeholder="Confirm CWID">
-        </TextInput>
+        <Mytextinput
+          placeholder="Confirm CWID"
+          onChangeText={
+            (confirm_cwid) => setConfirm_CWID(confirm_cwid)
+          }
+        />
 
         <Text style={styles.text}> Enter Password</Text>
-        <TextInput 
-          style={styles.textInput}
-          placeholder="Enter Password">
-        </TextInput>
+        <Mytextinput
+          placeholder="Enter Password"
+          onChangeText={
+            (password) => setPassword(password)
+          }
+        />
 
-        <Text style={styles.text}> Enter Password</Text>
-        <TextInput 
-          style={styles.textInput}
-          placeholder="Enter Password">
-        </TextInput>
+        <Text style={styles.text}> Confirm Password</Text>
+        <Mytextinput
+          placeholder="Confirm Password"
+          onChangeText={
+            (confirm_password) => setConfirmPassword(confirm_password)
+          }
+        />
 
         <Mybutton
           title="Create Account"
-          customClick={() => navigation.navigate('')}
+          customClick={setData}
         />
-        </ScrollView >
-    </View >
-  );
+      </ScrollView>
+  </View >
+);
 };
 
 export default HomeScreen;
+
