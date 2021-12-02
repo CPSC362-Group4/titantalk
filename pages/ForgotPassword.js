@@ -13,19 +13,22 @@ import Mytextinput from './components/Mytextinput';
 import Mybutton from './components/Mybutton';
 import { openDatabase } from 'react-native-sqlite-storage';
 
-var db = openDatabase({ name: 'UserDatabase.db' });
+var db = openDatabase({ name: 'Default.db' });
 
 
 const ForgotPassword = ( {navigation} ) =>
 {
-    let [userName, setUsername] = useState('');
+    let [cwid, setCWID] = useState('');
+    let [temp, setTempCWID] = useState('');
 
 
 let find_Password = () =>
 {
-    console.log(userName);
+  setTempCWID({});
+  
+    console.log(cwid);
 
-    if (!userName)
+    if (!cwid)
     {
         alert('put a user Name');
         return;
@@ -35,16 +38,17 @@ let find_Password = () =>
     {
         tx.executeSql
         (
-            'SELECT * FROM userInfo WHERE userName equals ?',
-            [userName],
+            'SELECT EXISTS (SELECT password FROM Users WHERE cwid= ?)',
+            [cwid],
             (tx, results) =>
             {
+              setTempCWID(results.rows.item(0));
                 console.log('Results', results.rowAffected);
-                if (results.rowAffected > 0)
+                if (temp == cwid)
                 {
                     Alert.alert
                     (
-                        'Your passWord is ?',[results],
+                        'Your passWord is ?'[temp],
                         [
                             {
                                 text: 'Ok',
@@ -53,7 +57,7 @@ let find_Password = () =>
                         ],
                          { cancelable:false }
                     );
-                }else alert('Username not found');
+                }else alert('CWID not found');
 
             },
         );
@@ -65,9 +69,9 @@ let find_Password = () =>
       <View style={{ flex: 1, backgroundColor: 'white' }}>
         <View style={{ flex: 1 }}>
           <Mytextinput
-            placeholder="Enter your User Id"
+            placeholder="Enter your CWID"
             onChangeText={
-              (userName) => setUsername(userName)
+              (cwid) => setCWID(cwid)
             }
             style={{ padding: 10 }}
           />
