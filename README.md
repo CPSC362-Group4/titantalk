@@ -150,7 +150,7 @@ List of network requests by screen
 - Teamquake
 
 ## SPRINT 4
-- [ ] Input data into database
+- [X] Input data into database
 - U03:
 	- [ ] Fetch gallery data for photos 
 - U04:
@@ -163,8 +163,8 @@ List of network requests by screen
 - U05:
 	- [ ] Incorporate database functionality with logout
 - U13:
-	- [ ] Add feed/timeline
-	- [ ] Complete pages navigation
+	- [X] Add feed/timeline
+	- [X] Complete pages navigation
 
 ### Issues
-- WIP
+- Trouble fetching user information when logging in/recovering passwords
